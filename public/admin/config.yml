@@ -1,0 +1,140 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "images/uploads"
+publish_mode: editorial_workflow
+
+collections:
+  - label: "Images"
+    name: "images"
+    folder: "images/uploads"
+    create: true
+    slug: "img-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: false
+
+      - label: "Image"
+        name: "imgFile"
+        widget: "image"
+
+      - label: "Alt Text"
+        name: "altText"
+        hint: "Required for web accessibility. Just a two-sentence-or-less description of the image."
+        widget: "string"
+
+  - label: "Pages"
+    name: "pages"
+    folder: "content/pages"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      
+      - label: "Custom URL Slug"
+        name: "customSlug"
+        hint: "Custom URL pattern (mywebsite.com/<what-goes-here>). If not included, your site will generate one automatically."
+        widget: "string"
+        required: false
+
+      - label: "Layout"
+        name: "layout"
+        widget: "select"
+        options: ["gallery", "right-scrolling gallery", "left-scrolling gallery", "text", "custom html"]
+        default: "gallery"
+        
+      - label: "Images"
+        name: "imageCollection"
+        hint: "choose which images in the Images collection to use for this page. Only used in gallery layouts."
+        required: false
+        widget: "list"
+        fields:
+          - label: "Image"
+            name: "image"
+            widget: "relation"
+            collection: "images"
+            search_fields: ["imgTitle", "imgContent"]
+            value_field: "imgTitle"
+            display_fields: ["imgTitle", "imgDescription"]
+      
+      - label: "Text"
+        name: "text"
+        hint: "displayed in X-scrolling gallery and text layouts"
+        widget: "markdown"
+        required: false
+      
+      - label: "Custom HTML"
+        name: "customHtml"
+        hint: "only used in custom html layouts"
+        widget: "file"
+        required: false
+
+      - label: "Custom CSS"
+        name: "customCss"
+        hint: "custom css if you wish!"
+        widget: "code"
+        default_language: "css"
+        required: false
+          
+      
+  - label: "Menu Structure"
+    name: "menu-structure"
+    create: false
+    delete: false
+    fields:
+      - label: "Menu Items"
+        name: "menuItems"
+        widget: "list"
+        fields:
+          - label: "Menu Item name"
+            name: "name"
+            hint: "Only required if this menu item does not link to a page."
+            widget: "string"
+            pattern: ['\S+', "Must have at least one character"]
+            required: false
+
+          - label: "Linked Page"
+            name: "linkedPage"
+            hint: "If not included, this menu item will not be a link (example: submenu title)"
+            widget: "relation"
+            collection: "pages"
+            value_field: "title"
+            required: false
+
+          - label: "Subitems"
+            name: "subitems"
+            hint: "If not included, this menu item will not be a submenu with its own items."
+            widget: "list"
+            fields:
+            - label: "Menu Item name"
+              name: "subItemName"
+              widget: "string"
+              pattern: ['\S+', "Must have at least one character"]
+
+            - label: "Linked Page"
+              name: "subItemLinkedPage"
+              hint: "If not included, this menu item will not be a link (example: submenu title)"
+              widget: "relation"
+              collection: "pages"
+              value_field: "title"
+              required: false
+            
+  - label: "Configuration"
+    name: "config"
+    editor:
+      preview: false
+    delete: false
+    fields:
+      - label: "Page Title visibility"
