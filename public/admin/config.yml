@@ -45,7 +45,7 @@ collections:
       
       - label: "URL Slug"
         name: "urlSlug"
-        hint: "URL pattern (mywebsite.com/<what-goes-here>). Leave this field alone to generate one automatically."
+        hint: "URL pattern (mywebsite.com/<what-goes-here>)."
         widget: "string"
         default: "{{slug}}"
         # required: false
@@ -67,8 +67,8 @@ collections:
             widget: "relation"
             collection: "images"
             search_fields: ["title", "imgFile"]
-            value_field: "title"
-            display_fields: ["title", "description"]
+            value_field: "imgFile"
+            display_fields: ["title"]
       
       - label: "Text"
         name: "text"
