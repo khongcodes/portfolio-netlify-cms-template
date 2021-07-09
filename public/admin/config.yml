@@ -66,9 +66,9 @@ collections:
             name: "image"
             widget: "relation"
             collection: "images"
-            search_fields: ["imgTitle", "imgContent"]
-            value_field: "imgTitle"
-            display_fields: ["imgTitle", "imgDescription"]
+            search_fields: ["title", "imgFile"]
+            value_field: "title"
+            display_fields: ["title", "description"]
       
       - label: "Text"
         name: "text"
