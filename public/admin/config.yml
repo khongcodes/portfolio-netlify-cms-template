@@ -43,11 +43,12 @@ collections:
         name: "title"
         widget: "string"
       
-      - label: "Custom URL Slug"
-        name: "customSlug"
-        hint: "Custom URL pattern (mywebsite.com/<what-goes-here>). If not included, your site will generate one automatically."
+      - label: "URL Slug"
+        name: "urlSlug"
+        hint: "URL pattern (mywebsite.com/<what-goes-here>). Leave this field alone to generate one automatically."
         widget: "string"
-        required: false
+        default: "{{slug}}"
+        # required: false
 
       - label: "Layout"
         name: "layout"
@@ -87,54 +88,78 @@ collections:
         widget: "code"
         default_language: "css"
         required: false
-          
-      
-  - label: "Menu Structure"
-    name: "menu-structure"
-    create: false
-    delete: false
-    fields:
-      - label: "Menu Items"
-        name: "menuItems"
-        widget: "list"
-        fields:
-          - label: "Menu Item name"
-            name: "name"
-            hint: "Only required if this menu item does not link to a page."
-            widget: "string"
-            pattern: ['\S+', "Must have at least one character"]
-            required: false
-
-          - label: "Linked Page"
-            name: "linkedPage"
-            hint: "If not included, this menu item will not be a link (example: submenu title)"
-            widget: "relation"
-            collection: "pages"
-            value_field: "title"
-            required: false
-
-          - label: "Subitems"
-            name: "subitems"
-            hint: "If not included, this menu item will not be a submenu with its own items."
-            widget: "list"
-            fields:
-            - label: "Menu Item name"
-              name: "subItemName"
-              widget: "string"
-              pattern: ['\S+', "Must have at least one character"]
-
-            - label: "Linked Page"
-              name: "subItemLinkedPage"
-              hint: "If not included, this menu item will not be a link (example: submenu title)"
-              widget: "relation"
-              collection: "pages"
-              value_field: "title"
-              required: false
             
   - label: "Configuration"
     name: "config"
     editor:
       preview: false
     delete: false
-    fields:
-      - label: "Page Title visibility"
+    files:
+      - name: "general"
+        label: "Site Config"
+        file: "admin-config/general.json"
+        description: "General site settings"
+        fields:
+          - label: "URL"
+            name: "base_url"
+            widget: "string"
+            hint: "Do not enter the trailing slash of the URL"
+          - label: "Site title"
+            name: "site_title"
+            widget: "string"
+          - label: "Site description"
+            name: "site_description"
+            widget: "string"
+          - label: "Site keywords"
+            name: "site_keywords"
+            widget: "list"
+            summary: "{{fields.keyword.keyword}}"
+            field:
+              label: Keyword
+              name: keyword
+              widget: "string"
+      
+      - name: "menu-structure"
+        label: "Menu Structure"
+        file: "admin-config/menu-structure.json"
+        description: "Layout for menu structure"
+        fields:
+          - label: "Menu Items"
+            name: "menuItems"
+            widget: "list"
+            fields:
+              - label: "Menu Item name"
+                name: "name"
+                hint: "Only required if this menu item does not link to a page."
+                widget: "string"
+                pattern: ['\S+', "Must have at least one character"]
+                required: false
+
+              - label: "Linked Page"
+                name: "linkedPage"
+                hint: "If not included, this menu item will not be a link (example: submenu title)"
+                widget: "relation"
+                collection: "pages"
+                value_field: "urlSlug"
+                required: false
+                search_fields: ["title"]
+
+              - label: "Subitems"
+                name: "subitems"
+                hint: "If not included, this menu item will not be a submenu with its own items."
+                widget: "list"
+                fields:
+                - label: "Menu Item name"
+                  name: "subItemName"
+                  widget: "string"
+                  pattern: ['\S+', "Must have at least one character"]
+
+                - label: "Linked Page"
+                  name: "subItemLinkedPage"
+                  hint: "If not included, this menu item will not be a link (example: submenu title)"
+                  widget: "relation"
+                  collection: "pages"
+                  value_field: "urlSlug"
+                  required: false
+                  search_fields: ["title"]
+
