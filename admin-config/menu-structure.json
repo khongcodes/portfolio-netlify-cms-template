@@ -1,0 +1,16 @@
+{
+  "menuItems": [
+    {
+      "name": "Galleries",
+      "subitems": [
+        {
+          "subItemName": "1",
+          "subItemLinkedPage": "gallery1test"
+        }
+      ]
+    },
+    {
+      "linkedPage": "gallery1test"
+    }
+  ]
+}
