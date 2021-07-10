@@ -1,6 +1,6 @@
 ---
-title: grimer
-description: grimer description
-imgFile: images/uploads/088grimer.png
-altText: grimer alt text
+title: virtualization title string
+description: virtualization description string
+imgFile: images/uploads/illus01.png
+altText: virtualization alt text
 ---
