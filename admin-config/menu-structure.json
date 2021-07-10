@@ -4,9 +4,8 @@
       "name": "Galleries",
       "subitems": [
         {
-          "subitems": [],
-          "subItemName": "Gallery 1",
-          "subItemLinkedPage": "gallery1-url-slug"
+          "linkedPage": "gallery1-url-slug",
+          "name": "Gallery 1"
         }
       ]
     },
