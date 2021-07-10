@@ -1,6 +1,6 @@
 ---
-title: test duck
-description: duck
-imgFile: images/uploads/testduck.jpg
-altText: rubber duck
+title: Everything title string
+description: Everything description string
+imgFile: images/uploads/illus04.png
+altText: Everything alt text
 ---
