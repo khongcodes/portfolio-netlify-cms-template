@@ -79,7 +79,8 @@ collections:
       - label: "Custom HTML"
         name: "customHtml"
         hint: "only used in custom html layouts"
-        widget: "file"
+        widget: "code"
+        default_language: "html"
         required: false
 
       - label: "Custom CSS"
@@ -146,8 +147,9 @@ collections:
 
               - label: "Subitems"
                 name: "subitems"
-                hint: "If not included, this menu item will not be a submenu with its own items."
+                hint: "If there are 0 subitems, this menu item will not be a submenu with its own items."
                 widget: "list"
+                required: false
                 fields:
                 - label: "Menu Item name"
                   name: "subItemName"
@@ -162,4 +164,23 @@ collections:
                   value_field: "urlSlug"
                   required: false
                   search_fields: ["title"]
+
+                - label: "Subitems"
+                  name: "subitems"
+                  hint: "If there are 0 subitems, this menu item will not be a submenu with its own items."
+                  widget: "list"
+                  required: false
+                  fields:
+                  - label: "Menu Item name"
+                    name: "subItemName"
+                    widget: "string"
+                    pattern: ['\S+', "Must have at least one character"]
+
+                  - label: "Linked Page"
+                    name: "subItemLinkedPage"
+                    hint: "If not included, this menu item will not be a link (example: submenu title)"
+                    widget: "relation"
+                    collection: "pages"
+                    value_field: "urlSlug"
+                    search_fields: ["title"]
 
