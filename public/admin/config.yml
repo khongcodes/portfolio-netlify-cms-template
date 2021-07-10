@@ -152,12 +152,12 @@ collections:
                 required: false
                 fields:
                 - label: "Menu Item name"
-                  name: "subItemName"
+                  name: "name"
                   widget: "string"
                   pattern: ['\S+', "Must have at least one character"]
 
                 - label: "Linked Page"
-                  name: "subItemLinkedPage"
+                  name: "linkedPage"
                   hint: "If not included, this menu item will not be a link (example: submenu title)"
                   widget: "relation"
                   collection: "pages"
@@ -172,12 +172,12 @@ collections:
                   required: false
                   fields:
                   - label: "Menu Item name"
-                    name: "subItemName"
+                    name: "name"
                     widget: "string"
                     pattern: ['\S+', "Must have at least one character"]
 
                   - label: "Linked Page"
-                    name: "subItemLinkedPage"
+                    name: "linkedPage"
                     hint: "If not included, this menu item will not be a link (example: submenu title)"
                     widget: "relation"
                     collection: "pages"
