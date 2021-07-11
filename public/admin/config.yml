@@ -9,7 +9,7 @@ publish_mode: editorial_workflow
 collections:
   - label: "Images"
     name: "images"
-    folder: "images/uploads"
+    folder: "content/images"
     create: true
     slug: "img-{{slug}}"
     fields:
